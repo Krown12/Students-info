@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block nav %}
+{{students}}
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">name</th>
+        <th scope="col">age</th>
+        <th scope="col">faculty</th>
+        <th scope="col">grade</th>
+        <th scope="col">description</th>
+        <th scope="col">nationality</th>
+        <th scope="col">status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for stu in students%}
+      <tr>
+        <th scope="row">{{forloop.counter}}</th>
+        <td>{{stu.name}}</td>
+        <td>{{stu.age}}</td>
+        <td>{{stu.faculty}}</td>
+        <td>{{stu.grade}}</td>
+        <td>{{stu.description}}</td>
+        <td>{% if stu.nationality %}NEPALI{%else%}NON_NEPALI{% endif %}</td>
+        <td>
+          {% if stu.is_selected%}
+
+            <span class = 'text-success'>approved</span>
+          {% else %}
+          <span class = "text-danger">pending</span>
+          {% endif %}
+      </td>
+        <td>
+            <img src="/media/{{stu.stuimg}}" width=50px,height=50px>
+        </td>
+        <td><a href ="/students_info/marked/{{stu.pk}}/" class = 'btn btn-primary'>check</a></td>
+        <td><a href ="/students_info/edit/{{stu.pk}}/" class = 'btn btn-success'>edit</a></td>
+        <td><a href ="/students_info/delete/{{stu.pk}}/" class = 'btn btn-danger'>delete</a></td>
+        
+      </tr>
+      {% endfor %}
+    </tbody>
+ </table>
+ {% endblock %}

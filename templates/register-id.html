@@ -1,0 +1,63 @@
+{% extends "base.html"%}
+
+{%block nav%}
+
+    <div class="container mt-5">
+      {% if  error %}
+      <div class="alert alert-danger" role="alert">
+        <span>all arguments are required</span>
+      </div>
+      
+      
+      {% endif %}
+        <form class="col-6  mx-auto card shadow-lg p-3" method="POST" enctype='multipart/form-data'>
+            {%csrf_token%}
+            <div class="mb-3">
+              <h1>register</h1>
+              <label for="exampleInputEmail1" class="form-label">name</label>
+              <input type="text" class="form-control" name='name' id="exampleInputEmail1" >
+              <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">age</label>
+              <input type="text" class="form-control" required name = "age">
+            </div>
+            <div class="mb-3 ">
+                <label class="form-label" for="exampleCheck1">grade</label>
+              <input type="text" class="form-control" name ="grade">
+              
+            </div>
+            <div class="mb-3 ">
+                <label class="form-label" for="exampleCheck1">faculty</label>
+                <input type="text" class="form-control" name ="faculty">
+            </div>
+            <div class="mb-3 ">
+              <label class="form-label" for="exampleCheck1">description</label>
+              <textarea class = "form-control" name = "description"></textarea>
+              </div>
+               <div class="mb-3 ">
+                
+                <label class="form-label" for="exampleCheck1">nepali</label>
+                <input type="checkbox" name ="nationality" value = "on" >
+
+        </div>  
+
+               
+              <div class="mb-3 ">
+                <label class="form-check-label" for="exampleCheck1">student picture</label>
+                <input type="file"  name ="stuimage"> 
+              </div > 
+                
+              
+            <button type="submit" class="btn btn-primary">Submit</button>
+            {% if not  error %}
+            <div class="alert alert-success" role="alert">
+              <span>success</span>
+            </div>
+            
+            
+            {% endif %}
+          </form>
+    </div>
+
+{%endblock%}

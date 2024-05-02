@@ -1,0 +1,56 @@
+{% extends "base.html"%}
+
+{%block nav%}
+
+    <div class="container mt-5 mx-auto card shadow-lg p-3">
+      {% if  error %}
+      <div class="alert alert-danger" role="alert">
+        <span>all arguments are required</span>
+      </div>
+      {% endif %}
+        <form class="col-6 " method="POST" action ='/students_info/edit/{{obj.pk}}/' enctype='multipart/form-data'>
+            {%csrf_token%}
+            <div class="mb-3">
+              <h1>Register</h1>
+              <label for="exampleInputEmail1" class="form-label">name</label>
+              <input type="text" class="form-control" name='name' id="exampleInputEmail1" value = {{obj.name}} aria-describedby="emailHelp">
+              <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+            </div>
+            <div class="mb-3">
+              <label  class="form-label">age</label>
+              <input type="text" class="form-control" required name = "age" value = {{obj.age}}>
+            </div>
+            <div class="mb-3 ">
+                <label class="form-label">grade</label>
+              <input type="text" class="form-control" name ="grade" value = {{obj.grade}}>
+              
+            </div>
+            <div class="mb-3 ">
+                <label class="form-label">faculty</label>
+                <input type="text" class="form-control" name ="faculty" value = {{obj.faculty}}>
+            </div>
+            <div class="mb-3 ">
+              <label class="form-label">description</label>
+              <textarea class = "form-control" name = "description">{{obj.description}}</textarea>
+              </div>
+               <div class="mb-3 ">
+                
+                <label class="form-label">nepali</label>
+                <input type="checkbox" name ="nationality" value = {{obj.nationality}} >
+
+        </div>  
+                
+              <div class="mb-3 ">
+                <label class="form-check-label" for="exampleCheck1">student picture</label>
+                <img src="{{stu.stuimg.url}}" width=100px height = 100px alt ='{{stu.stuimg.url}}'>
+                <input type="file"  name ="stuimage">   
+              </div > 
+    
+                
+              
+            <button type ="submit" class="btn btn-primary">update</button>
+
+          </form>
+    </div>
+
+{%endblock%}
